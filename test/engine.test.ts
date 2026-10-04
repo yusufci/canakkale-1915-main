@@ -247,3 +247,39 @@ describe('kampanya', () => {
     }
   });
 });
+
+describe('ses ve muharebe raporları', () => {
+  it('ses motoru metotları ortamsız çalışırken çökmez', async () => {
+    const { sound } = await import('../src/engine/audio.ts');
+    assert.doesNotThrow(() => {
+      sound.init();
+      sound.playHeavyCannon();
+      sound.playLightGun();
+      sound.playMineExplosion();
+      sound.playOrderClick();
+      sound.playShipAlarm();
+      sound.playInfantrySkirmish();
+      sound.playTurnChime();
+      sound.playVictory();
+      sound.playDefeat();
+      sound.toggleMute();
+      sound.toggleMute();
+    });
+  });
+
+  it('tur çözümü muharebe raporları üretir ve sözleşmeye uyar', () => {
+    const s = newGame('ottoman', 1915);
+    let totalReports = 0;
+    for (let i = 0; i < 35; i++) {
+      const res = endTurn(s);
+      totalReports += res.reports.length;
+      for (const r of res.reports) {
+        assert.ok(['kara', 'deniz', 'tabya', 'mayin', 'hava'].includes(r.kind));
+        assert.ok(r.province.length > 0);
+        assert.ok(r.title.length > 0);
+      }
+    }
+    assert.ok(totalReports > 0, 'muharebe raporu üretilmedi');
+  });
+});
+

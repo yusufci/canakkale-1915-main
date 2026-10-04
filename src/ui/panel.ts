@@ -8,6 +8,7 @@ import type {
 } from '../core/types.ts';
 import { prov } from '../core/geo.ts';
 import { GUN_BY_ID } from '../data/guns.ts';
+import { SHIP_CLASSES } from '../data/ships.ts';
 import { TERRAINS } from '../data/units.ts';
 import { commanderMods, templateStats } from '../engine/combat.ts';
 import {
@@ -19,6 +20,7 @@ import {
 import { landOrderOptions, navalOrderOptions } from '../engine/orders.ts';
 import type { Selection } from '../render/map.ts';
 import { TRAITS } from '../data/commanders.ts';
+import { sound } from '../engine/audio.ts';
 
 /**
  * Sağ panel. Seçime göre il / birlik / filo / tabya ayrıntısı ve emir menüsü.
@@ -60,6 +62,7 @@ export class Panel {
   private onClick(e: MouseEvent): void {
     const t = (e.target as HTMLElement).closest<HTMLElement>('[data-act]');
     if (!t) return;
+    sound.playOrderClick();
     const act = t.dataset.act!;
     const needsTarget = t.dataset.target === '1';
     if (act === 'kara') {
@@ -291,17 +294,29 @@ export class Panel {
       <div class="bolum"><h4>GEMİLER</h4>`;
 
     for (const sh of f.ships) {
+      const cls = SHIP_CLASSES[sh.cls];
       const sunk = sh.hull <= 0;
       const crippled = !sunk && sh.hull <= CRIPPLED_HULL;
+      const cardCls = sunk ? 'batti' : crippled ? 'hasarli' : '';
       const tag = sunk ? 'BATTI' : crippled ? 'SAVAŞ DIŞI' : `%${Math.round(sh.hull * 100)}`;
-      html += `<div class="satir"><span style="${
-        sunk ? 'text-decoration:line-through;opacity:.5' : ''
-      }">${esc(sh.name)}</span><span style="${
-        sunk || crippled ? 'color:var(--mine)' : ''
-      }">${tag}</span></div>`;
-      if (sh.historicalNote && (sunk || crippled)) {
-        html += `<p class="not">${esc(sh.historicalNote)}</p>`;
-      }
+      const barCls = sunk ? 'kirmizi' : crippled ? 'kirmizi' : sh.hull > 0.6 ? 'yesil' : '';
+
+      html += `<div class="gemi-karti ${cardCls}">
+        <div class="gemi-baslik">
+          <span>${esc(sh.name)}</span>
+          <span style="${sunk || crippled ? 'color:var(--mine)' : 'color:var(--accent)'}">${tag}</span>
+        </div>
+        <div class="gemi-sinif">${esc(cls.name)}</div>
+        ${bar(sh.hull, 1, barCls)}
+        <div class="gemi-spek">
+          <span>⚓ ${num(cls.displacement)} t</span>
+          <span>🛡️ ${cls.armour} mm</span>
+          ${cls.gunRange > 0 ? `<span>🎯 ${Math.round(cls.gunRange / 1000)} km</span>` : ''}
+          <span>⚡ ${cls.speed} kn</span>
+          ${sh.mines > 0 ? `<span>💣 ${sh.mines} mayın</span>` : ''}
+        </div>
+        ${sh.historicalNote ? `<p class="not" style="margin-top:3px">${esc(sh.historicalNote)}</p>` : ''}
+      </div>`;
     }
     html += `</div>`;
 

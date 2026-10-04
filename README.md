@@ -47,7 +47,8 @@ npm run build      # tsc --noEmit + vite build
 
 Haritada tıklama kendi birliğini seçer; sağ panelden emir verilir. Hedef
 isteyen emirlerde harita hedef seçme kipine girer (iptal: `Esc`). `1`–`5`
-harita modunu değiştirir, `Boşluk` turu bitirir.
+harita modunu değiştirir, `Boşluk` turu bitirir, `M` sesi açar/kapatır, `Tab`
+sırayla emirsiz birliklere odaklanır.
 
 ### Zafer koşulları
 
@@ -238,7 +239,9 @@ Katkıya açık, önem sırasına göre:
 - [ ] **Denizaltı harbi.** AE2, E11, E14, Muavenet-i Milliye, U-21 — hepsi
       olay metinlerinde var ama oynanabilir sistem değil.
 - [ ] **Tüm Osmanlı haritası** (aşağıya bakın).
-- [ ] **Ses.** Yok.
+- [x] **Ses ve Gerçekçi Akustik.** Web Audio API ile sıfır harici dosya gecikmesi:
+      381/355 mm ağır donanma topu kükremesi, su altı mayın patlaması, telsiz klikleri,
+      çatışma alarmı ve Çanakkale Boğazı dalga ambiyansı.
 - [ ] **Mobil / dokunmatik.** Arayüz masaüstü için tasarlandı.
 - [ ] **İngilizce yerelleştirme.** Metinler şu an kodun içinde gömülü Türkçe.
 

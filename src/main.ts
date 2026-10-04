@@ -16,6 +16,7 @@ import { liveShips, minefieldsIn } from './engine/naval.ts';
 import { MAP_MODES, MapView } from './render/map.ts';
 import type { MapMode, Selection } from './render/map.ts';
 import { Panel } from './ui/panel.ts';
+import { sound } from './engine/audio.ts';
 
 const $ = <T extends HTMLElement>(id: string): T => {
   const el = document.getElementById(id);
@@ -74,6 +75,9 @@ class Game {
     this.view.setState(this.state);
     this.refresh();
 
+    // Kullanıcının ilk etkileşiminde ses motorunu uyandır
+    window.addEventListener('pointerdown', () => sound.init(), { once: true });
+
     $('taraf-sec').setAttribute('aria-busy', 'false');
     for (const b of document.querySelectorAll<HTMLButtonElement>('.taraf')) {
       b.disabled = false;
@@ -117,9 +121,30 @@ class Game {
   }
 
   private bindChrome(): void {
+    const updateSesIkon = () => {
+      const muted = sound.isMuted();
+      const btn = $('ses-dugme');
+      $('ses-ikon').textContent = muted ? '🔇' : '🔊';
+      btn.classList.toggle('kapali', muted);
+      btn.title = muted ? 'Sesi Aç (M)' : 'Sesi Kapat (M)';
+    };
+    $('ses-dugme').addEventListener('click', () => {
+      sound.toggleMute();
+      updateSesIkon();
+    });
+    updateSesIkon();
+
     $('tur-bitir').addEventListener('click', () => this.endTurn());
 
     document.addEventListener('keydown', (e) => {
+      if (e.code === 'KeyM') {
+        sound.toggleMute();
+        updateSesIkon();
+      }
+      if (e.code === 'Tab') {
+        e.preventDefault();
+        this.cycleUnorderedUnit();
+      }
       if (e.code === 'Space' && !$<HTMLDivElement>('olay-katman').hidden === false) {
         e.preventDefault();
         this.endTurn();
@@ -158,6 +183,7 @@ class Game {
 
   private select(sel: Selection | null): void {
     if (this.pending) return;
+    if (sel) sound.playOrderClick();
     this.selection = sel;
     this.view.selection = sel;
     this.panel.render(this.state, sel);
@@ -278,12 +304,61 @@ class Game {
     if (this.state.outcome) return;
     if (this.eventQueue.length > 0) return;
     this.cancelTargeting();
-    endTurn(this.state);
+    const result = endTurn(this.state);
     this.eventQueue = [...this.state.pendingEvents];
     this.state.pendingEvents = [];
     this.refresh();
+
+    // Muharebe görsel efektleri ve ses oynatımı
+    if (result.reports.length > 0) {
+      let hasShipLoss = false;
+      for (const r of result.reports) {
+        if (r.kind === 'mayin') {
+          sound.playMineExplosion();
+          this.view.triggerCombatFx(r.province, r.province, 'mine', '💣 Mayın!');
+        } else if (r.kind === 'tabya' || r.kind === 'deniz') {
+          sound.playHeavyCannon();
+          this.view.triggerCombatFx(r.province, r.province, 'naval', r.title);
+        } else if (r.kind === 'kara') {
+          sound.playInfantrySkirmish();
+          this.view.triggerCombatFx(r.province, r.province, 'land', '⚔️ Muharebe');
+        }
+        if (r.losses.ottoman.ships > 0 || r.losses.entente.ships > 0) {
+          hasShipLoss = true;
+        }
+      }
+      if (hasShipLoss) {
+        sound.playShipAlarm();
+      }
+      // İlk muharebe iline akıcı geçiş yap
+      this.view.smoothPanTo(result.reports[0]!.province);
+    } else {
+      sound.playTurnChime();
+    }
+
     this.showNextEvent();
     if (this.state.outcome) this.showOutcome();
+  }
+
+  private cycleUnorderedUnit(): void {
+    const s = this.state;
+    const units = Object.values(s.landUnits).filter(
+      (u) => u.side === s.playerSide && !u.embarkedIn && !u.order,
+    );
+    const fleets = Object.values(s.fleets).filter(
+      (f) => f.side === s.playerSide && liveShips(f).length > 0 && !f.order,
+    );
+    if (units.length > 0) {
+      const u = units[0]!;
+      this.select({ kind: 'birlik', id: u.id });
+      this.view.smoothPanTo(u.location);
+    } else if (fleets.length > 0) {
+      const f = fleets[0]!;
+      this.select({ kind: 'filo', id: f.id });
+      this.view.smoothPanTo(f.location);
+    } else {
+      this.toast('Tüm birliklerin emri tamamlandı');
+    }
   }
 
   private refresh(): void {
@@ -412,8 +487,13 @@ class Game {
   private showOutcome(): void {
     const o = this.state.outcome;
     if (!o) return;
-    $('son-baslik').textContent =
-      o.winner === this.state.playerSide ? 'ZAFER' : 'YENİLGİ';
+    const won = o.winner === this.state.playerSide;
+    if (won) {
+      sound.playVictory();
+    } else {
+      sound.playDefeat();
+    }
+    $('son-baslik').textContent = won ? 'ZAFER' : 'YENİLGİ';
     $('son-govde').textContent = `${o.reason}\n\n${
       o.winner === 'ottoman' ? 'Osmanlı' : 'İtilaf'
     } galip — ${formatDate(this.state.date)}.`;

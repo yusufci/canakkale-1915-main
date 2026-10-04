@@ -12,8 +12,9 @@ import {
 import type { GameState, Province, ProvinceId, Side, Vec2 } from '../core/types.ts';
 import { MAP, RELIEF_BOX, dist, pointInPolygon, prov } from '../core/geo.ts';
 import { C, LAYER } from '../style/tokens.ts';
-import { fortRange, liveShips, minefieldsIn } from '../engine/naval.ts';
+import { CRIPPLED_HULL, fortRange, liveShips, minefieldsIn } from '../engine/naval.ts';
 import { TERRAINS } from '../data/units.ts';
+import { EffectsLayer } from './effects.ts';
 
 /**
  * Harita çizimi — @destanevreni'nin animasyonundaki görsel dil:
@@ -98,6 +99,7 @@ export class MapView {
 
   private labelPool: Text[] = [];
   private counterPool: Container[] = [];
+  private effects = new EffectsLayer();
 
   mode: MapMode = 'siyasi';
   selection: Selection | null = null;
@@ -111,6 +113,9 @@ export class MapView {
   private zoom = 1;
   private panX = 0;
   private panY = 0;
+  private targetPanX = 0;
+  private targetPanY = 0;
+  private isLerping = false;
   private hovered: ProvinceId | null = null;
   private dragging = false;
   private dragFrom = { x: 0, y: 0 };
@@ -141,6 +146,7 @@ export class MapView {
     this.gUnits.zIndex = LAYER.unit;
     this.gLabels.zIndex = LAYER.label;
     this.gOverlay.zIndex = LAYER.overlay;
+    this.effects.container.zIndex = LAYER.overlay + 1;
 
     // Rölyef dokusu yalnız indirilen yükseklik kutusunu kaplıyor; kadraj dışarı
     // taştığında arkada saf siyah kalıyordu. Altına geniş bir deniz zemini serilir.
@@ -165,6 +171,7 @@ export class MapView {
       this.gUnits,
       this.gLabels,
       this.gOverlay,
+      this.effects.container,
     );
     this.app.stage.addChild(this.world);
 
@@ -172,6 +179,21 @@ export class MapView {
     this.fitToMap();
     this.bindInput(canvas);
     window.addEventListener('resize', () => this.fitToMap(true));
+
+    // Animasyon döngüsü: görsel efektler ve akıcı kamera (lerp)
+    this.app.ticker.add((time) => {
+      this.effects.update(time.deltaTime / 60, this.zoom);
+      if (this.isLerping) {
+        this.panX += (this.targetPanX - this.panX) * 0.14;
+        this.panY += (this.targetPanY - this.panY) * 0.14;
+        if (Math.hypot(this.targetPanX - this.panX, this.targetPanY - this.panY) < 1.0) {
+          this.panX = this.targetPanX;
+          this.panY = this.targetPanY;
+          this.isLerping = false;
+        }
+        this.applyTransform();
+      }
+    });
   }
 
   /**
@@ -411,9 +433,28 @@ export class MapView {
 
   centreOn(id: ProvinceId): void {
     const c = prov(id).center;
-    this.panX = this.app.screen.width / 2 - c.x * this.zoom;
-    this.panY = this.app.screen.height / 2 - c.y * this.zoom;
-    this.applyTransform();
+    this.targetPanX = this.app.screen.width / 2 - c.x * this.zoom;
+    this.targetPanY = this.app.screen.height / 2 - c.y * this.zoom;
+    this.isLerping = true;
+  }
+
+  smoothPanTo(id: ProvinceId): void {
+    this.centreOn(id);
+  }
+
+  triggerCombatFx(fromId: ProvinceId, toId: ProvinceId, kind: 'naval' | 'mine' | 'land', text?: string): void {
+    const from = prov(fromId).center;
+    const to = prov(toId).center;
+    if (kind === 'naval') {
+      this.effects.addTracer(from, to, C.accentGlow);
+    } else if (kind === 'mine') {
+      this.effects.addExplosion(to, 1500, C.mine, 1.2);
+    } else {
+      this.effects.addExplosion(to, 900, C.ottoman, 0.8);
+    }
+    if (text) {
+      this.effects.addFloatingText(to, text, kind === 'mine' ? C.mine : C.accentGlow);
+    }
   }
 
   // ───────────────────────────────────────────────────────── çizim ────
@@ -672,7 +713,7 @@ export class MapView {
       if (st.n > 1) t.text += `·${st.n}`;
     }
 
-    // ── Filolar: videodaki eğik gemi işareti ──
+    // ── Filolar: gemi sınıfına göre gerçekçi siluetler ──
     for (const f of Object.values(s.fleets)) {
       const alive = liveShips(f);
       if (alive.length === 0) continue;
@@ -685,18 +726,63 @@ export class MapView {
       const t = c.children[1] as Text;
       const col = f.side === 'ottoman' ? C.ottoman : C.ship;
       g.clear();
-      // Birkaç küçük gemi silueti, hafif ofsetli — videodaki filo gösterimi.
-      const show = Math.min(5, alive.length);
-      for (let i = 0; i < show; i++) {
-        const ox = (i % 3) * 11 - 11;
-        const oy = Math.floor(i / 3) * 8 - 4;
-        g.poly([ox - 6, oy, ox + 1, oy - 3, ox + 7, oy, ox + 1, oy + 3])
+
+      // Sınıf kompozisyonunu belirle
+      const hasDreadnought = alive.some((sh) => sh.cls === 'dretnot');
+      const hasPreDreadnought = alive.some((sh) => sh.cls === 'pre_dretnot' || sh.cls === 'muharebe_kruvazoru');
+      const hasMinelayer = alive.some((sh) => sh.cls === 'mayin_gemisi');
+      const hasSweeper = alive.some((sh) => sh.cls === 'mayin_tarayici');
+      const hasCrippled = alive.some((sh) => sh.hull > 0 && sh.hull <= CRIPPLED_HULL);
+
+      if (hasDreadnought) {
+        // Dretnot (Queen Elizabeth): Uzun zırhlı gövde + 4 taret + çift baca
+        g.poly([-16, -5, 10, -5, 18, 0, 10, 5, -16, 5, -18, 2, -18, -2])
+          .fill({ color: col, alpha: 0.95 })
+          .stroke({ width: 1.2, color: C.shipLight, alpha: 0.9 });
+        g.rect(-10, -2.5, 18, 5).fill({ color: 0x222630, alpha: 0.7 });
+        g.circle(-2, 0, 1.8).fill({ color: C.textDim, alpha: 1 });
+        g.circle(4, 0, 1.8).fill({ color: C.textDim, alpha: 1 });
+        g.circle(-11, 0, 2.2).fill({ color: C.shipLight, alpha: 1 });
+        g.circle(-6, 0, 2.2).fill({ color: C.shipLight, alpha: 1 });
+        g.circle(8, 0, 2.2).fill({ color: C.shipLight, alpha: 1 });
+        g.circle(13, 0, 2.2).fill({ color: C.shipLight, alpha: 1 });
+      } else if (hasPreDreadnought) {
+        // Pre-Dretnot (Bouvet / Agamemnon / Barbaros): Geniş tumblehome gövde + 2 taret + baca
+        g.poly([-13, -5, 7, -5, 14, 0, 7, 5, -13, 5, -14, 2, -14, -2])
+          .fill({ color: col, alpha: 0.95 })
+          .stroke({ width: 1.0, color: C.shipLight, alpha: 0.85 });
+        g.circle(0, 0, 2).fill({ color: C.textDim, alpha: 0.9 });
+        g.circle(-8, 0, 2.2).fill({ color: C.shipLight, alpha: 1 });
+        g.circle(7, 0, 2.2).fill({ color: C.shipLight, alpha: 1 });
+      } else if (hasMinelayer) {
+        // Mayın Gemisi (Nusret): Mayın dökme rayları
+        g.poly([-10, -3.5, 6, -3.5, 11, 0, 6, 3.5, -10, 3.5])
+          .fill({ color: col, alpha: 0.95 })
+          .stroke({ width: 1.0, color: C.accent, alpha: 0.9 });
+        g.circle(-7, -1.5, 1).fill({ color: C.mine, alpha: 1 });
+        g.circle(-7, 1.5, 1).fill({ color: C.mine, alpha: 1 });
+      } else if (hasSweeper) {
+        // Mayın Tarayıcı: Küçük trawler
+        g.poly([-7, -3, 3, -3, 7, 0, 3, 3, -7, 3])
+          .fill({ color: col, alpha: 0.9 })
+          .stroke({ width: 0.8, color: C.textDim, alpha: 0.8 });
+        g.circle(0, 0, 1.2).fill({ color: C.shipLight, alpha: 1 });
+      } else {
+        // Muhrip / Hafif kruvazör: İnce keskin profil
+        g.poly([-12, -3, 8, -3, 14, 0, 8, 3, -12, 3])
           .fill({ color: col, alpha: 0.92 })
-          .stroke({ width: 0.8, color: C.shipLight, alpha: 0.8 });
+          .stroke({ width: 0.9, color: C.shipLight, alpha: 0.8 });
+        g.circle(-2, 0, 1.4).fill({ color: C.textDim, alpha: 1 });
       }
+
+      // Ağır hasar/yangın göstergesi
+      if (hasCrippled) {
+        g.circle(0, -7, 3).fill({ color: C.mine, alpha: 0.9 });
+      }
+
       t.text = String(alive.length);
       t.x = 0;
-      t.y = 13;
+      t.y = 12;
     }
 
     for (let i = used; i < this.counterPool.length; i++) {
