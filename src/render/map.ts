@@ -57,6 +57,14 @@ const OUT_OF_FRAME: ReadonlySet<string> = new Set([
   'lapseki',
   'gelibolu',
   'd_gelibolu_onu',
+  'istanbul',
+  'edirne',
+  'tekirdag',
+  'bandirma',
+  'bursa',
+  'd_orta_marmara',
+  'd_istanbul_bogazi',
+  'd_bandirma_korfezi',
 ]);
 
 const LABEL_STYLE = new TextStyle({

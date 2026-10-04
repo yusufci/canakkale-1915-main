@@ -538,6 +538,15 @@ export function applyEffect(state: GameState, effect: EventEffect): void {
 function checkVictory(state: GameState): void {
   const v = SCENARIO.victory;
 
+  if (state.provinces['istanbul']?.controller === 'entente') {
+    state.outcome = {
+      winner: 'entente',
+      reason: 'Payitaht İstanbul İtilaf kuvvetlerinin eline geçti. Osmanlı İmparatorluğu teslim oldu.',
+      day: state.day,
+    };
+    return;
+  }
+
   const straitForced = v.ententeStraitProvinces.every(
     (id) => state.provinces[id]?.controller === 'entente',
   );

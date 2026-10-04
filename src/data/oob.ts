@@ -31,6 +31,30 @@ export interface OobAirWing extends Omit<ScenarioAirWing, 'arrivesOn'> {
 // geldi. Senaryo başında birlikler Müstahkem Mevki emrindedir.
 export const OTTOMAN_LAND: readonly OobLandUnit[] = [
   {
+    id: 'os_tumen_1',
+    name: '1. Ordu (Payitaht Muhafızları)',
+    nation: 'osmanli',
+    templateId: 'os_piyade_tumen',
+    location: 'istanbul',
+    src: COMU + ' — Payitaht Muhafız Birlikleri',
+  },
+  {
+    id: 'os_tumen_edirne',
+    name: 'Trakya Savunma Tümeni',
+    nation: 'osmanli',
+    templateId: 'os_piyade_tumen',
+    location: 'edirne',
+    src: COMU + ' — 2. Ordu Trakya Savunma Hattı',
+  },
+  {
+    id: 'os_alay_bandirma',
+    name: 'Bandırma Sevk Alayı',
+    nation: 'osmanli',
+    templateId: 'os_piyade_alay',
+    location: 'bandirma',
+    src: COMU + ' — Anadolu Demiryolu İkmal ve Sevkiyat Noktası',
+  },
+  {
     id: 'os_tumen_9',
     name: '9. Tümen',
     nation: 'osmanli',
@@ -396,6 +420,20 @@ export const FLEETS: readonly OobFleet[] = [
       { name: 'Sultanhisar', cls: 'muhrip', note: '29 Nisan 1915\'te AE2 denizaltısını batırdı' },
     ],
     src: COMU,
+  },
+  {
+    id: 'os_payitaht_filosu',
+    name: 'Marmara & Payitaht Filosu',
+    nation: 'osmanli',
+    location: 'd_istanbul_bogazi',
+    commanderId: 'wilhelm_souchon',
+    ships: [
+      { name: 'Yavuz Sultan Selim', cls: 'muharebe_kruvazoru', note: '10 × 280 mm; Osmanlı donanmasının sancak gemisi (SMS Goeben)' },
+      { name: 'Midilli', cls: 'hafif_kruvazor', note: '12 × 105 mm; yüksek süratli hafif kruvazör (SMS Breslau)' },
+      { name: 'Berk-i Satvet', cls: 'muhrip' },
+      { name: 'Peyk-i Şevket', cls: 'muhrip' },
+    ],
+    src: COMU + ' — Osmanlı Donanması Payitaht İhtiyat Grubu',
   },
 ];
 

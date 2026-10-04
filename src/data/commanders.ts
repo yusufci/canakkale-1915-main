@@ -199,6 +199,13 @@ export const COMMANDERS: readonly CommanderSpec[] = [
     WIKI_NAVAL,
   ),
   cmd(
+    'wilhelm_souchon', 'Wilhelm Souchon', 'Koramiral', 'alman', 'ottoman', 'deniz',
+    [6, 5, 5, 4], ['taarruz_ruhu', 'mayin_harbi'], '1915-02-01',
+    'Osmanlı Donanma Komutanı. Yavuz ve Midilli ile Marmara ve Karadeniz deniz güvenliğini yönetti.',
+    'Yüksek deniz taarruz yeteneği ve kararlı filo idaresi. Taarruz 6.',
+    COMU,
+  ),
+  cmd(
     'halil_sami', 'Halil Sami Bey', 'Albay', 'osmanli', 'ottoman', 'kara',
     [3, 5, 4, 3], ['inatci_savunma'], '1915-02-01',
     '9. Tümen Komutanı. 25 Nisan\'da yarımadanın güneyi ve Arıburnu kıyıları ' +
