@@ -1,0 +1,29 @@
+node_modules/
+dist/
+.venv/
+.vercel/
+
+# ── Telifli kaynak materyal — DEPOYA GİRMEZ ───────────────────────────────
+# Referans alınan harita animasyonu @destanevreni'ye aittir. Oyunda yalnızca
+# ondan örneklenen RENK DEĞERLERİ kullanılıyor (src/style/tokens.ts); videonun
+# kendisi yeniden dağıtılamaz.
+*.mp4
+*.mov
+*.webm
+
+# ── Harita derleme önbelleği ──────────────────────────────────────────────
+# tools/fetch_terrain.py ve geocode*.py bunları yeniden üretir.
+tools/data/tiles/
+tools/data/elev.npz
+tools/data/*.html
+tools/data/*.txt
+tools/data/*.pdf
+tools/data/coastline.json
+
+# Üretilmiş harita çıktıları (src/data/map.json, public/relief.png) depoda
+# TUTULUR: derleme zinciri ~400 MB indirme gerektiriyor, oysa çıktı 900 KB.
+
+*.log
+.DS_Store
+.vercel
+.env*

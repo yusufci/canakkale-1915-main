@@ -1,0 +1,281 @@
+{
+ "alcitepe": {
+  "category": "place/village",
+  "display": "Alçıtepe, Eceabat, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.094914,
+  "lon": 26.2272995,
+  "osm": "node/412399310",
+  "query": "Alçıtepe, Eceabat",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "ariburnu": {
+  "category": "landuse/cemetery",
+  "display": "Ari Burnu Cemetery, Büyükanafarta Köyü, Eceabat, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.2390226,
+  "lon": 26.2770992,
+  "osm": "relation/6248076",
+  "query": "Ari Burnu Cemetery",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "bigali": {
+  "category": "place/village",
+  "display": "Bigalı, Eceabat, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.235718,
+  "lon": 26.359732,
+  "osm": "node/1483545640",
+  "query": "Bigalı, Eceabat, Çanakkale, Türkiye",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "bolayir": {
+  "category": "place/village",
+  "display": "Bolayır, Gelibolu, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.5157329,
+  "lon": 26.75738,
+  "osm": "node/9298415805",
+  "query": "Bolayır, Gelibolu",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "bozcaada": {
+  "category": "boundary/administrative",
+  "display": "Bozcaada, Çanakkale, Marmara Bölgesi, 17680, Türkiye",
+  "lat": 39.8347344,
+  "lon": 26.0701917,
+  "osm": "relation/1815262",
+  "query": "Bozcaada, Çanakkale",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "buyuk_anafarta": {
+  "category": "place/village",
+  "display": "Büyük Anafarta, Eceabat, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.281624,
+  "lon": 26.329241,
+  "osm": "node/1483545642",
+  "query": "Büyük Anafarta, Eceabat",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "canakkale_sehir": {
+  "category": "boundary/administrative",
+  "display": "Çanakkale Merkez, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.146271,
+  "lon": 26.4028892,
+  "osm": "relation/1816280",
+  "query": "Çanakkale Merkez, Çanakkale, Türkiye",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "conkbayiri": {
+  "category": "landuse/cemetery",
+  "display": "Chunuk Bair Cemetery, Büyükanafarta Köyü, Eceabat, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.2519917,
+  "lon": 26.308637,
+  "osm": "way/676486346",
+  "query": "Chunuk Bair",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "dardanos": {
+  "category": "boundary/administrative",
+  "display": "Çınarlı Köyü - Dardanos Mevkii, Çınarlı Köyü, Çanakkale Merkez, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.0841806,
+  "lon": 26.3665974,
+  "osm": "relation/12312190",
+  "query": "Dardanos, Çanakkale Merkez",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "eceabat": {
+  "category": "boundary/administrative",
+  "display": "Eceabat, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.1852143,
+  "lon": 26.3590969,
+  "osm": "relation/1815219",
+  "query": "Eceabat, Çanakkale, Türkiye",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "erenkoy_intepe": {
+  "category": "place/village",
+  "display": "Erenköy, Çanakkale Merkez, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.0135656,
+  "lon": 26.3316784,
+  "osm": "node/1483748934",
+  "query": "İntepe, Çanakkale Merkez",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "gelibolu": {
+  "category": "boundary/administrative",
+  "display": "Gelibolu, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.4054063,
+  "lon": 26.6722539,
+  "osm": "relation/1815220",
+  "query": "Gelibolu, Çanakkale, Türkiye",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "gokceada": {
+  "category": "place/town",
+  "display": "Gökçeada, Çanakkale, Marmara Bölgesi, 17760, Türkiye",
+  "lat": 40.2003874,
+  "lon": 25.9084625,
+  "osm": "node/1256499266",
+  "query": "Gökçeada, Çanakkale",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "guzelyali": {
+  "category": "boundary/administrative",
+  "display": "Güzelyalı Köyü, Çanakkale Merkez, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.0455154,
+  "lon": 26.3492933,
+  "osm": "relation/12312193",
+  "query": "Güzelyalı, Çanakkale Merkez",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "halileli": {
+  "category": "place/village",
+  "display": "Halileli, Çanakkale Merkez, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 39.973816,
+  "lon": 26.276415,
+  "osm": "node/2449181666",
+  "query": "Halileli, Çanakkale Merkez",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "kabatepe": {
+  "category": "tourism/camp_site",
+  "display": "Kabatepe Orman Kampı Plajı, 17-85, Eceabat, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.1987473,
+  "lon": 26.2715029,
+  "osm": "node/7885201201",
+  "query": "Kabatepe, Eceabat, Çanakkale, Türkiye",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "kanlisirt": {
+  "category": "landuse/cemetery",
+  "display": "Lone Pine Cemetery, Eceabat, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.2304211,
+  "lon": 26.2870654,
+  "osm": "way/254756091",
+  "query": "Lone Pine Cemetery",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "kemikli_burnu": {
+  "category": "natural/bay",
+  "display": "Suvla Koyu, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.3032553,
+  "lon": 26.2344187,
+  "osm": "relation/12739896",
+  "query": "Suvla Bay",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "kepez": {
+  "category": "boundary/administrative",
+  "display": "Kepez Beldesi, Çanakkale Merkez, Çanakkale, Marmara Bölgesi, 17110, Türkiye",
+  "lat": 40.0955068,
+  "lon": 26.3931331,
+  "osm": "relation/13853010",
+  "query": "Kepez, Çanakkale Merkez",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "kilitbahir": {
+  "category": "place/village",
+  "display": "Kilitbahir, Eceabat, Çanakkale, Marmara Bölgesi, 17910, Türkiye",
+  "lat": 40.1467789,
+  "lon": 26.3779734,
+  "osm": "node/365348106",
+  "query": "Kilitbahir, Eceabat",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "kirectepe": {
+  "category": "natural/peak",
+  "display": "Kireçtepe, Eceabat, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.3452146,
+  "lon": 26.2838787,
+  "osm": "node/8391130221",
+  "query": "Kireçtepe, Eceabat",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "kocacimentepe": {
+  "category": "natural/peak",
+  "display": "Koca Çimen Tepe, Eceabat, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.2593284,
+  "lon": 26.319917,
+  "osm": "node/2611772882",
+  "query": "Koca Çimen Tepe, Eceabat",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "kucuk_anafarta": {
+  "category": "place/village",
+  "display": "Küçük Anafarta, Eceabat, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.305908,
+  "lon": 26.31926,
+  "osm": "node/1483545795",
+  "query": "Küçük Anafarta, Eceabat",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "kumkale": {
+  "category": "place/village",
+  "display": "Kumkale, Çanakkale Merkez, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 39.9815943,
+  "lon": 26.2370257,
+  "osm": "node/959686363",
+  "query": "Kumkale, Çanakkale Merkez",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "lapseki": {
+  "category": "boundary/administrative",
+  "display": "Lapseki, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.3443674,
+  "lon": 26.6845975,
+  "osm": "relation/1815245",
+  "query": "Lapseki, Çanakkale",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "morto_koyu": {
+  "category": "natural/beach",
+  "display": "Morto Koyu, Seddülbahir Köyü, Eceabat, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.0513159,
+  "lon": 26.2146331,
+  "osm": "way/256126617",
+  "query": "Morto Koyu, Eceabat",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "nagara": {
+  "category": "natural/cape",
+  "display": "Nara Burnu, Çanakkale Merkez, Çanakkale, Marmara Bölgesi, 17900, Türkiye",
+  "lat": 40.1963301,
+  "lon": 26.4012274,
+  "osm": "node/27807950",
+  "query": "Nara Burnu, Çanakkale",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "seddulbahir": {
+  "category": "place/village",
+  "display": "Seddülbahir, Eceabat, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.0446676,
+  "lon": 26.1889171,
+  "osm": "node/10081393939",
+  "query": "Seddülbahir, Eceabat",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "tekke_burnu": {
+  "category": "natural/cape",
+  "display": "Tekke Burnu, Seddülbahir Köyü, Eceabat, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.0530041,
+  "lon": 26.1661395,
+  "osm": "node/27805508",
+  "query": "Tekke Burnu, Eceabat",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "truva": {
+  "category": "boundary/protected_area",
+  "display": "Troya'nın Arkeolojik Alanı, Kalafat, Çanakkale Merkez, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 39.957374,
+  "lon": 26.2380175,
+  "osm": "way/423938794",
+  "query": "Troya Antik Kenti, Çanakkale",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ },
+ "zigindere": {
+  "category": "waterway/stream",
+  "display": "Zığındere, Seddülbahir Köyü, Eceabat, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.0868725,
+  "lon": 26.1984483,
+  "osm": "way/903468329",
+  "query": "Zığındere, Eceabat",
+  "src": "https://nominatim.openstreetmap.org/ (OpenStreetMap, ODbL)"
+ }
+}

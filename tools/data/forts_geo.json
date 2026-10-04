@@ -1,0 +1,114 @@
+{
+ "anadolu_hamidiye": {
+  "display": "Anadolu Hamidiye Tabyası, Barbaros, Barbaros Mahallesi, Çanakkale Merkez, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.1374979,
+  "lon": 26.4027811,
+  "osm": "way/303002619",
+  "query": "Anadolu Hamidiye Tabyası, Çanakkale",
+  "src": "https://nominatim.openstreetmap.org/ (OSM, ODbL)"
+ },
+ "cimenlik": {
+  "display": "Çimenlik Kalesi, Talimhane Sokak, Fevzipaşa, Fevzipaşa Mahallesi, Çanakkale Merkez, Çanakkale, Marmara Bölgesi, 17000, Türkiye",
+  "lat": 40.1463382,
+  "lon": 26.3990884,
+  "osm": "way/235113134",
+  "query": "Çimenlik Kalesi, Çanakkale",
+  "src": "https://nominatim.openstreetmap.org/ (OSM, ODbL)"
+ },
+ "dardanos": {
+  "display": "Çınarlı Köyü - Dardanos Mevkii, Çınarlı Köyü, Çanakkale Merkez, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.0841806,
+  "lon": 26.3665974,
+  "osm": "relation/12312190",
+  "query": "Çınarlı Köyü - Dardanos Mevkii, Çanakkale",
+  "src": "https://nominatim.openstreetmap.org/ (OSM, ODbL)"
+ },
+ "degirmenburnu": {
+  "display": "Değirmen Burnu Tabyası, Edirne - Çanakkale Yolu, Kilitbahir, Eceabat, Çanakkale, Marmara Bölgesi, 17910, Türkiye",
+  "lat": 40.1555596,
+  "lon": 26.3765518,
+  "osm": "way/1316826216",
+  "query": "Değirmen Burnu, Eceabat",
+  "src": "https://nominatim.openstreetmap.org/ (OSM, ODbL)"
+ },
+ "ertugrul": {
+  "display": "Ertuğrul Tabyası, Tekke Köyü İç Yolu, Seddülbahir Köyü, Eceabat, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.0446709,
+  "lon": 26.1815999,
+  "osm": "way/667064293",
+  "query": "Ertuğrul Tabyası, Eceabat, Çanakkale",
+  "src": "https://nominatim.openstreetmap.org/ (OSM, ODbL)"
+ },
+ "hamidiye_sehitligi": {
+  "display": "Anadolu Hamidiye Tabyası, Barbaros, Barbaros Mahallesi, Çanakkale Merkez, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.1374979,
+  "lon": 26.4027811,
+  "osm": "way/303002619",
+  "query": "Hamidiye Tabyası, Çanakkale",
+  "src": "https://nominatim.openstreetmap.org/ (OSM, ODbL)"
+ },
+ "kilitbahir_kale": {
+  "display": "Kilitbahir Kalesi, Kilitbahir - Alçıtepe Yolu, Alçıtepe Köyü, Eceabat, Çanakkale, Marmara Bölgesi, 17100, Türkiye",
+  "lat": 40.1477743,
+  "lon": 26.3792553,
+  "osm": "relation/7330312",
+  "query": "Kilitbahir Kalesi, Eceabat, Çanakkale",
+  "src": "https://nominatim.openstreetmap.org/ (OSM, ODbL)"
+ },
+ "kumkale": {
+  "display": "Kumkale, Çanakkale Merkez, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 39.9815943,
+  "lon": 26.2370257,
+  "osm": "node/959686363",
+  "query": "Kumkale, Çanakkale Merkez",
+  "src": "https://nominatim.openstreetmap.org/ (OSM, ODbL)"
+ },
+ "merkez_bolayir": {
+  "display": "Çimpe Kalesi, İstanbul Caddesi, Bolayır, Gelibolu, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.4964979,
+  "lon": 26.7342384,
+  "osm": "node/4353187835",
+  "query": "Çimpe Kalesi, Bolayır",
+  "src": "https://nominatim.openstreetmap.org/ (OSM, ODbL)"
+ },
+ "nagara_kale": {
+  "display": "Nara Burnu Kalesi, Nara Yolu Sokak, Esenler, Esenler Mahallesi, Çanakkale Merkez, Çanakkale, Marmara Bölgesi, 17010, Türkiye",
+  "lat": 40.1963154,
+  "lon": 26.4040186,
+  "osm": "way/232225383",
+  "query": "Nara Kalesi, Çanakkale",
+  "src": "https://nominatim.openstreetmap.org/ (OSM, ODbL)"
+ },
+ "namazgah": {
+  "display": "Namazgah Tabyası, Çarşı Caddesi, Kilitbahir, Eceabat, Çanakkale, Marmara Bölgesi, 17910, Türkiye",
+  "lat": 40.1449859,
+  "lon": 26.3799513,
+  "osm": "way/333582249",
+  "query": "Namazgâh Tabyası, Kilitbahir, Çanakkale",
+  "src": "https://nominatim.openstreetmap.org/ (OSM, ODbL)"
+ },
+ "orhaniye": {
+  "display": "Orhaniye Tabyası, Seddülbahir Küme Evler, Seddülbahir Köyü, Eceabat, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 39.9926267,
+  "lon": 26.1862048,
+  "osm": "way/1135419612",
+  "query": "Orhaniye Tabyası, Çanakkale",
+  "src": "https://nominatim.openstreetmap.org/ (OSM, ODbL)"
+ },
+ "rumeli_mecidiye": {
+  "display": "Rumeli Mecidiye Tabyası, Kilitbahir - Alçıtepe Yolu, Alçıtepe Köyü, Eceabat, Çanakkale, Marmara Bölgesi, 17100, Türkiye",
+  "lat": 40.1411387,
+  "lon": 26.3738979,
+  "osm": "way/1316767903",
+  "query": "Rumeli Mecidiye Tabyası, Eceabat, Çanakkale",
+  "src": "https://nominatim.openstreetmap.org/ (OSM, ODbL)"
+ },
+ "seddulbahir": {
+  "display": "Seddülbahir Kalesi, Seddülbahir Küme Evler, Seddülbahir Köyü, Eceabat, Çanakkale, Marmara Bölgesi, Türkiye",
+  "lat": 40.0419593,
+  "lon": 26.1877943,
+  "osm": "way/217554476",
+  "query": "Seddülbahir Kalesi, Eceabat",
+  "src": "https://nominatim.openstreetmap.org/ (OSM, ODbL)"
+ }
+}

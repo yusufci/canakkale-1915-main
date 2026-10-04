@@ -1,0 +1,95 @@
+
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Çanakkale 1915</title>
+    <meta
+      name="description"
+      content="1915 Çanakkale Muharebeleri — tur tabanlı stratejik savaş oyunu"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="harita"></canvas>
+
+      <header id="ustbar">
+        <div class="marka">
+          <span class="marka-ana">ÇANAKKALE</span><span class="marka-yil">1915</span>
+        </div>
+        <div class="tarih-blok">
+          <div id="tarih" class="tarih">—</div>
+          <div id="hava" class="alt">—</div>
+        </div>
+        <div id="olculer" class="olculer"></div>
+        <button id="tur-bitir" class="tur-bitir">
+          <span class="tb-ana">TURU BİTİR</span>
+          <span class="tb-alt">Boşluk</span>
+        </button>
+      </header>
+
+      <nav id="modlar" class="modlar"></nav>
+
+      <aside id="panel" class="panel" hidden></aside>
+
+      <section id="gunluk" class="gunluk">
+        <div class="gunluk-bas">
+          <span>GÜNLÜK</span><button id="gunluk-kapat" class="mini">gizle</button>
+        </div>
+        <div id="gunluk-liste" class="gunluk-liste"></div>
+      </section>
+
+      <div id="ipucu" class="ipucu" hidden></div>
+
+      <div id="olay-katman" class="olay-katman" hidden>
+        <article class="olay">
+          <div id="olay-tarih" class="olay-tarih"></div>
+          <h2 id="olay-baslik" class="olay-baslik"></h2>
+          <p id="olay-govde" class="olay-govde"></p>
+          <div id="olay-secenek" class="olay-secenek"></div>
+          <a id="olay-kaynak" class="olay-kaynak" target="_blank" rel="noopener">kaynak</a>
+        </article>
+      </div>
+
+      <div id="son-katman" class="olay-katman" hidden>
+        <article class="olay olay-son">
+          <div class="olay-tarih">KAMPANYA SONU</div>
+          <h2 id="son-baslik" class="olay-baslik"></h2>
+          <p id="son-govde" class="olay-govde"></p>
+          <button id="son-yeniden" class="birincil">YENİDEN OYNA</button>
+        </article>
+      </div>
+
+      <div id="acilis" class="olay-katman">
+        <article class="olay olay-acilis">
+          <div class="olay-tarih">19 ŞUBAT 1915 — 9 OCAK 1916</div>
+          <h2 class="olay-baslik">ÇANAKKALE 1915</h2>
+          <p class="olay-govde duz">Birleşik Filo boğaz ağzında. Tabyalar mayın hatlarını koruyor, mayın hatları tabyaları. Bu döngü kırılmazsa boğaz geçilmez.</p>
+          <div class="taraf-sec" id="taraf-sec" aria-busy="true">
+            <button class="taraf" data-taraf="ottoman" disabled>
+              <span class="taraf-ad">OSMANLI</span>
+              <span class="taraf-alt">
+                Boğazı savun. Mayın dök, tabyaları besle, çıkarmaları denize dök.
+              </span>
+            </button>
+            <button class="taraf" data-taraf="entente" disabled>
+              <span class="taraf-ad">İTİLAF</span>
+              <span class="taraf-alt">
+                Boğazı zorla. Mayınları tara, tabyaları sustur, Marmara'ya çık.
+              </span>
+            </button>
+          </div>
+          <p class="olay-kaynak" id="acilis-durum">Harita yükleniyor…</p>
+        </article>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
